@@ -1,15 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hdse77javafx.controller.CustomerController">
    <children>
-      <Text fill="WHITE" layoutX="185.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer View">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
+      <VBox prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <StackPane prefHeight="60.0" prefWidth="800.0" style="-fx-background-color: green;">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Management">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </StackPane>
+            <AnchorPane prefHeight="259.0" prefWidth="800.0">
+               <children>
+                  <VBox layoutX="222.0" layoutY="9.0" prefHeight="49.0" prefWidth="171.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID" />
+                        <TextField fx:id="customerIdTextField" prefHeight="26.0" prefWidth="182.0" style="-fx-border-color: lightgreen;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="405.0" layoutY="8.0" prefHeight="49.0" prefWidth="171.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
+                        <TextField fx:id="customerNameTextField" prefHeight="26.0" prefWidth="182.0" style="-fx-border-color: lightgreen;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="222.0" layoutY="68.0" prefHeight="49.0" prefWidth="171.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Phone" />
+                        <TextField fx:id="customerPhoneTextField" prefHeight="26.0" prefWidth="182.0" style="-fx-border-color: lightgreen;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="405.0" layoutY="68.0" prefHeight="49.0" prefWidth="171.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Email" />
+                        <TextField fx:id="customerEmailTextField" prefHeight="26.0" prefWidth="182.0" style="-fx-border-color: lightgreen;" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="222.0" layoutY="125.0" prefHeight="82.0" prefWidth="355.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Address" />
+                        <TextArea fx:id="customerAddressTextArea" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: lightgreen;" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" layoutX="223.0" layoutY="214.0" prefHeight="36.0" prefWidth="355.0">
+                     <children>
+                        <Button fx:id="customerSaveBtn" mnemonicParsing="false" onAction="#clickSaveCustomerBtn" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: green; -fx-border-color: lightgreen;" text="Save" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="customerUpdateBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: blue; -fx-border-color: lightblue;" text="Update" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="customerDeleteBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: red; -fx-border-color: pink;" text="Delete" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="customerResetBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: yellow; -fx-border-color: orange;" text="Reset" textFill="#ff7b00">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="customerPrintBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: purple; -fx-border-color: lightblue;" text="Print" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="283.0" prefWidth="800.0">
+               <children>
+                  <TableView layoutX="22.0" layoutY="41.0" prefHeight="200.0" prefWidth="753.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="ID" />
+                      <TableColumn prefWidth="206.0" text="NAME" />
+                        <TableColumn prefWidth="134.0" text="Phone" />
+                        <TableColumn prefWidth="153.0" text="Email" />
+                        <TableColumn prefWidth="184.0" text="Address" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
