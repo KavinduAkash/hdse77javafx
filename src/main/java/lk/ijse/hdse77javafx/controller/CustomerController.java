@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -89,16 +90,19 @@ public class CustomerController implements Initializable {
             int result = pstmt.executeUpdate();
 
             if(result>0) {
-                System.out.println("Customer saved successfully!");
+                 // System.out.println("Customer saved successfully!");
+                 new Alert(Alert.AlertType.INFORMATION, "Customer saved successfully!").show();
             } else {
-                System.out.println("Something went wrong!");
+                // System.out.println("Something went wrong!");
+                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
             }
 
             pstmt.close();
 
        } catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("Something went wrong!");
+            // System.out.println("Something went wrong!");
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
        }
 
    }
