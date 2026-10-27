@@ -18,7 +18,7 @@
                   <Image url="@../images/KeellsLogo.png" />
                </image>
             </ImageView>
-            <Button fx:id="navBtnCustomer" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Customer" textFill="WHITE">
+            <Button fx:id="navBtnCustomer" mnemonicParsing="false" onAction="#clickNavBtnCustomer" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Customer" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -26,7 +26,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="navBtnItem" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Item" textFill="WHITE">
+            <Button fx:id="navBtnItem" mnemonicParsing="false" onAction="#clickNavBtnItem" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Item" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="navBtnOrder" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Order" textFill="WHITE">
+            <Button fx:id="navBtnOrder" mnemonicParsing="false" onAction="#clickNavBtnOrder" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Order" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
