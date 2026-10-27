@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,6 +56,15 @@ public class CustomerController implements Initializable {
     @FXML
     private Button customerUpdateBtn;
     
+    
+    
+    private final String CUSTOMER_NAME_REGEX = "^[A-Za-z]+(?:\\s+[A-Za-z]+)*$";
+    private final String CUSTOMER_ID_REGEX = "^[A-Z0-9]+$";
+    private final String CUSTOMER_PHONE_REGEX = "^(?:(?:\\+94|0094|94)[\\s.-]?(?:0)?[1-9]\\d{8}|0(?:[1-9]\\d{8}))$";
+    private final String CUSTOMER_EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+    private final String CUSTOMER_ADDRESS_REGEX = "^[A-Za-z0-9,\\/\\\\]+$";
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -68,8 +78,23 @@ public class CustomerController implements Initializable {
         String customerEmail = customerEmailTextField.getText().trim();
         String customerAddress = customerAddressTextArea.getText().trim();
         
-        Customer customerModel = new Customer(customerId, customerName, customerAddress, customerPhone, customerEmail);
-        addCustomer(customerModel);
+        // boolean r = Pattern.matches(CUSTOMER_NAME_REGEX, customerName);
+        // boolean r = customerName.matches(CUSTOMER_NAME_REGEX);
+        
+        if(!customerId.matches(CUSTOMER_ID_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer ID").show();
+        } else if(!customerName.matches(CUSTOMER_NAME_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Name").show();
+        } else if(!customerPhone.matches(CUSTOMER_PHONE_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Phone").show();
+        } else if(!customerEmail.matches(CUSTOMER_EMAIL_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer E-Mail").show();  
+        } else if(!customerAddress.matches(CUSTOMER_ADDRESS_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Address").show();      
+        } else {
+            Customer customerModel = new Customer(customerId, customerName, customerAddress, customerPhone, customerEmail);
+            addCustomer(customerModel);
+        }
     }
     
     
