@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hdse77javafx.controller.LayoutController">
+   <left>
+      <VBox prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: lightgreen;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/KeellsLogo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="navBtnCustomer" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Customer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="navBtnItem" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Item" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="navBtnOrder" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: green;" text="Order" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
