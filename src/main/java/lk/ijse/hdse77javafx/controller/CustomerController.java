@@ -27,6 +27,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.hdse77javafx.db.DBConnection;
 
 /**
@@ -165,6 +167,71 @@ public class CustomerController implements Initializable {
        }
 
    }
+    
+    
+   @FXML
+   void pressSearchCustomer(KeyEvent event) {
+       
+       if(event.getCode() == KeyCode.ENTER) {
+           
+           String id = customerIdTextField.getText();
+           
+           Customer cusObj = searchCustomer(id); // Customer Object / null
+           
+           if(cusObj != null) {
+           
+               customerNameTextField.setText(cusObj.getName());
+               customerAddressTextArea.setText(cusObj.getAddress());
+               customerPhoneTextField.setText(cusObj.getPhone());
+               customerEmailTextField.setText(cusObj.getEmail());
+               
+           } else {
+               new Alert(Alert.AlertType.ERROR, "Customer not found!").show();
+           }
+           
+       }
+       
+   }
+    
+   public Customer searchCustomer(String id) {
+       Customer cus = null;
+       try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String query = "SELECT * FROM customer WHERE id=?";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, id);
+
+            ResultSet result = pstmt.executeQuery();
+
+            if(result.next()) {
+
+                String cid = result.getString("id");
+                String name = result.getString("name");
+                String address = result.getString("address");
+                String phone = result.getString("phone");
+                String email = result.getString("email");
+
+                cus = new Customer(cid, name, address, phone, email);
+
+            } else {
+                System.out.println("Customer not found!");
+            }
+
+            pstmt.close();
+
+       } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong!");
+       }
+       
+       return cus;
+
+   } 
+    
     
     
    private void loadCustomerTable() {
