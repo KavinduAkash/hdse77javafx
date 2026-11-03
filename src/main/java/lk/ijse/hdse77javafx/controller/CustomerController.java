@@ -8,16 +8,25 @@ import lk.ijse.hdse77javafx.model.Customer;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hdse77javafx.db.DBConnection;
 
 /**
@@ -56,6 +65,23 @@ public class CustomerController implements Initializable {
     @FXML
     private Button customerUpdateBtn;
     
+    @FXML
+    private TableColumn<Customer, String> colAddress;
+
+    @FXML
+    private TableColumn<Customer, String> colEmail;
+
+    @FXML
+    private TableColumn<Customer, String> colId;
+
+    @FXML
+    private TableColumn<Customer, String> colName;
+
+    @FXML
+    private TableColumn<Customer, String> colPhone;
+    
+    @FXML
+    private TableView<Customer> tableCustomer;
     
     
     private final String CUSTOMER_NAME_REGEX = "^[A-Za-z]+(?:\\s+[A-Za-z]+)*$";
@@ -68,6 +94,13 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        
+        loadCustomerTable();
     }
     
     @FXML
@@ -117,6 +150,7 @@ public class CustomerController implements Initializable {
             if(result>0) {
                  // System.out.println("Customer saved successfully!");
                  new Alert(Alert.AlertType.INFORMATION, "Customer saved successfully!").show();
+                 loadCustomerTable();
             } else {
                 // System.out.println("Something went wrong!");
                 new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
@@ -132,4 +166,48 @@ public class CustomerController implements Initializable {
 
    }
     
+    
+   private void loadCustomerTable() {
+       
+      List<Customer> cusList = getAllCustomers();
+      ObservableList<Customer> obList = FXCollections.observableArrayList(cusList);
+      tableCustomer.setItems(obList);
+       
+   } 
+    
+   public List<Customer> getAllCustomers() {
+
+       List<Customer> cusList = new ArrayList<Customer>();
+
+       try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String query = "SELECT * FROM customer ORDER BY id DESC";
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet result = stmt.executeQuery(query);
+
+            while(result.next()) {
+                String id = result.getString("id");
+                String name = result.getString("name");
+                String address = result.getString("address");
+                String phone = result.getString("phone");
+                String email = result.getString("email");
+
+                Customer cus = new Customer(id, name, address, phone, email);
+                cusList.add(cus);
+            }
+
+            stmt.close();
+
+       } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong!");
+       }
+
+       return cusList;
+
+   } 
 }

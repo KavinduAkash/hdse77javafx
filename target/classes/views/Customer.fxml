@@ -91,13 +91,13 @@
             </AnchorPane>
             <AnchorPane prefHeight="283.0" prefWidth="800.0">
                <children>
-                  <TableView layoutX="22.0" layoutY="41.0" prefHeight="200.0" prefWidth="753.0">
+                  <TableView fx:id="tableCustomer" layoutX="22.0" layoutY="41.0" prefHeight="200.0" prefWidth="753.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="206.0" text="NAME" />
-                        <TableColumn prefWidth="134.0" text="Phone" />
-                        <TableColumn prefWidth="153.0" text="Email" />
-                        <TableColumn prefWidth="184.0" text="Address" />
+                      <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="colName" prefWidth="206.0" text="NAME" />
+                        <TableColumn fx:id="colPhone" prefWidth="134.0" text="Phone" />
+                        <TableColumn fx:id="colEmail" prefWidth="153.0" text="Email" />
+                        <TableColumn fx:id="colAddress" prefWidth="184.0" text="Address" />
                     </columns>
                   </TableView>
                </children>
