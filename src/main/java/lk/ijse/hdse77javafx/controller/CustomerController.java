@@ -105,6 +105,8 @@ public class CustomerController implements Initializable {
         loadCustomerTable();
     }
     
+    // ======================= Save Customer =======================
+    
     @FXML
     void clickSaveCustomerBtn(ActionEvent event) {
         String customerId = customerIdTextField.getText().trim();
@@ -153,6 +155,7 @@ public class CustomerController implements Initializable {
                  // System.out.println("Customer saved successfully!");
                  new Alert(Alert.AlertType.INFORMATION, "Customer saved successfully!").show();
                  loadCustomerTable();
+                 cleanCustomerForm();
             } else {
                 // System.out.println("Something went wrong!");
                 new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
@@ -168,6 +171,8 @@ public class CustomerController implements Initializable {
 
    }
     
+   
+   // ======================= Search Customer =======================
     
    @FXML
    void pressSearchCustomer(KeyEvent event) {
@@ -232,7 +237,7 @@ public class CustomerController implements Initializable {
 
    } 
     
-    
+   // ======================= Load Customer Table =======================
     
    private void loadCustomerTable() {
        
@@ -277,4 +282,75 @@ public class CustomerController implements Initializable {
        return cusList;
 
    } 
+   
+   
+   // ======================= Update Customer =======================
+   
+    @FXML
+    void clickUpdateCustomerBtn(ActionEvent event) {
+        String customerId = customerIdTextField.getText().trim();
+        String customerName = customerNameTextField.getText().trim();
+        String customerPhone = customerPhoneTextField.getText().trim();
+        String customerEmail = customerEmailTextField.getText().trim();
+        String customerAddress = customerAddressTextArea.getText().trim();
+        
+        if(!customerId.matches(CUSTOMER_ID_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer ID").show();
+        } else if(!customerName.matches(CUSTOMER_NAME_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Name").show();
+        } else if(!customerPhone.matches(CUSTOMER_PHONE_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Phone").show();
+        } else if(!customerEmail.matches(CUSTOMER_EMAIL_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer E-Mail").show();  
+        } else if(!customerAddress.matches(CUSTOMER_ADDRESS_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Address").show();      
+        } else {
+            Customer customerModel = new Customer(customerId, customerName, customerAddress, customerPhone, customerEmail);
+            updateCustomer(customerModel);
+        }
+    }
+    
+    
+    public void updateCustomer(Customer cus) {
+       try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String query = "UPDATE customer SET name=?, address=?, phone=?, email=? WHERE id=?";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1 , cus.getName());
+            pstmt.setString(2 , cus.getAddress());
+            pstmt.setString(3 , cus.getPhone());
+            pstmt.setString(4 , cus.getEmail());
+            pstmt.setString(5 , cus.getId());
+
+            int result = pstmt.executeUpdate();
+
+            if(result>0) {
+                 new Alert(Alert.AlertType.INFORMATION, "Customer updated successfully!").show();
+                 loadCustomerTable();
+                 cleanCustomerForm();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+            }
+
+            pstmt.close();
+
+       } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong!");
+       }
+
+   }
+    
+    
+    private void cleanCustomerForm() {
+        customerIdTextField.setText("");
+        customerNameTextField.setText("");
+        customerAddressTextArea.setText("");
+        customerPhoneTextField.setText("");
+        customerEmailTextField.setText("");
+    }
 }

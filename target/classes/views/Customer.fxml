@@ -65,7 +65,7 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="customerUpdateBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: blue; -fx-border-color: lightblue;" text="Update" textFill="WHITE">
+                        <Button fx:id="customerUpdateBtn" mnemonicParsing="false" onAction="#clickUpdateCustomerBtn" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: blue; -fx-border-color: lightblue;" text="Update" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
