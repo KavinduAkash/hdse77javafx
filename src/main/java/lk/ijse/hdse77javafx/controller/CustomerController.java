@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.hdse77javafx.db.DBConnection;
+import lk.ijse.hdse77javafx.model.tbl.CustomerTbl;
 
 /**
  *
@@ -68,22 +69,25 @@ public class CustomerController implements Initializable {
     private Button customerUpdateBtn;
     
     @FXML
-    private TableColumn<Customer, String> colAddress;
+    private TableColumn<CustomerTbl, String> colAddress;
 
     @FXML
-    private TableColumn<Customer, String> colEmail;
+    private TableColumn<CustomerTbl, String> colEmail;
 
     @FXML
-    private TableColumn<Customer, String> colId;
+    private TableColumn<CustomerTbl, String> colId;
 
     @FXML
-    private TableColumn<Customer, String> colName;
+    private TableColumn<CustomerTbl, String> colName;
 
     @FXML
-    private TableColumn<Customer, String> colPhone;
+    private TableColumn<CustomerTbl, String> colPhone;
     
     @FXML
-    private TableView<Customer> tableCustomer;
+    private TableColumn<CustomerTbl, String> colRefNo;
+    
+    @FXML
+    private TableView<CustomerTbl> tableCustomer;
     
     
     private final String CUSTOMER_NAME_REGEX = "^[A-Za-z]+(?:\\s+[A-Za-z]+)*$";
@@ -101,6 +105,7 @@ public class CustomerController implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colRefNo.setCellValueFactory(new PropertyValueFactory<>("refNo"));
         
         loadCustomerTable();
     }
@@ -242,7 +247,16 @@ public class CustomerController implements Initializable {
    private void loadCustomerTable() {
        
       List<Customer> cusList = getAllCustomers();
-      ObservableList<Customer> obList = FXCollections.observableArrayList(cusList);
+      
+      List<CustomerTbl> cusTblList = new ArrayList<CustomerTbl>();
+      
+       for (Customer customer : cusList) {
+           String refNo = customer.getId() + customer.getPhone();
+           CustomerTbl cusTbl = new CustomerTbl(customer.getId(), customer.getName(), customer.getAddress(), customer.getPhone(), customer.getEmail(), refNo);
+           cusTblList.add(cusTbl);
+       }
+      
+      ObservableList<CustomerTbl> obList = FXCollections.observableArrayList(cusTblList);
       tableCustomer.setItems(obList);
        
    } 

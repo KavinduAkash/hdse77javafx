@@ -94,10 +94,11 @@
                   <TableView fx:id="tableCustomer" layoutX="22.0" layoutY="41.0" prefHeight="200.0" prefWidth="753.0">
                     <columns>
                       <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="colName" prefWidth="206.0" text="NAME" />
-                        <TableColumn fx:id="colPhone" prefWidth="134.0" text="Phone" />
-                        <TableColumn fx:id="colEmail" prefWidth="153.0" text="Email" />
-                        <TableColumn fx:id="colAddress" prefWidth="184.0" text="Address" />
+                      <TableColumn fx:id="colName" prefWidth="136.0" text="NAME" />
+                        <TableColumn fx:id="colPhone" prefWidth="101.0" text="Phone" />
+                        <TableColumn fx:id="colEmail" prefWidth="118.0" text="Email" />
+                        <TableColumn fx:id="colAddress" prefWidth="170.0" text="Address" />
+                        <TableColumn fx:id="colRefNo" prefWidth="227.0" text="Ref No" />
                     </columns>
                   </TableView>
                </children>
