@@ -70,12 +70,12 @@
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="customerDeleteBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: red; -fx-border-color: pink;" text="Delete" textFill="WHITE">
+                        <Button fx:id="customerDeleteBtn" mnemonicParsing="false" onAction="#clickDeleteCustomerBtn" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: red; -fx-border-color: pink;" text="Delete" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="customerResetBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: yellow; -fx-border-color: orange;" text="Reset" textFill="#ff7b00">
+                        <Button fx:id="customerResetBtn" mnemonicParsing="false" onAction="#clickResetCustomerBtn" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: yellow; -fx-border-color: orange;" text="Reset" textFill="#ff7b00">
                            <HBox.margin>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </HBox.margin>

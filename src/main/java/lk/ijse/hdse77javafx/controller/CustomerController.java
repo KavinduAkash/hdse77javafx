@@ -346,6 +346,54 @@ public class CustomerController implements Initializable {
    }
     
     
+    @FXML
+    void clickDeleteCustomerBtn(ActionEvent event) {
+        String customerId = customerIdTextField.getText().trim();
+        
+        if(!customerId.matches(CUSTOMER_ID_REGEX)) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer ID").show();
+        } else {
+            deleteCustomer(customerId);
+        }
+    }
+    
+    
+    public void deleteCustomer(String id) {
+       try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String query = "DELETE FROM customer WHERE id=?";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, id);
+
+            int result = pstmt.executeUpdate();
+
+            if(result>0) {
+                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted successfully!").show();
+                 loadCustomerTable();
+                 cleanCustomerForm();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+            }
+
+            pstmt.close();
+
+       } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong!");
+       }
+
+   }
+    
+    
+    @FXML
+    void clickResetCustomerBtn(ActionEvent event) {
+        cleanCustomerForm();
+    }
+    
     private void cleanCustomerForm() {
         customerIdTextField.setText("");
         customerNameTextField.setText("");
