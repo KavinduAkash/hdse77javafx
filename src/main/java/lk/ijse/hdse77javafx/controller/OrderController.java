@@ -14,8 +14,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import lk.ijse.hdse77javafx.db.DBConnection;
 import lk.ijse.hdse77javafx.model.Customer;
 
@@ -47,6 +50,36 @@ public class OrderController implements Initializable {
     @FXML
     private Label itemUnitPriceValueLbl;
     
+    
+    @FXML
+    private TextField orderQtyTextField;
+    
+    @FXML
+    private Button addToCartBtn;
+    
+    
+    @FXML
+    private TableColumn<?, ?> noCol;
+    
+    @FXML
+    private TableColumn<?, ?> itemIdCol;
+
+    @FXML
+    private TableColumn<?, ?> itemNameCol;
+
+    @FXML
+    private TableColumn<?, ?> orderQtyCol;
+    
+    @FXML
+    private TableColumn<?, ?> removeCol;
+
+    @FXML
+    private TableColumn<?, ?> totalCol;
+
+    @FXML
+    private TableColumn<?, ?> unitPriceCol;
+    
+
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -206,6 +239,12 @@ public class OrderController implements Initializable {
              e.printStackTrace();
              System.out.println("Something went wrong!");
         }
+    }
+    
+    
+    @FXML
+    void handleClickAddToCart(ActionEvent event) {
+        
     }
     
 }

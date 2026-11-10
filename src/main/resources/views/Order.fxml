@@ -80,7 +80,7 @@
                   <VBox layoutX="607.0" layoutY="82.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Order Qty" />
-                        <TextField style="-fx-border-color: black; -fx-border-width: 0 0 2 0; -fx-background-color: none;" />
+                        <TextField fx:id="orderQtyTextField" style="-fx-border-color: black; -fx-border-width: 0 0 2 0; -fx-background-color: none;" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" layoutX="593.0" layoutY="150.0" prefHeight="46.0" prefWidth="164.0">
@@ -90,7 +90,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: blue;" text="Add to Cart" textFill="WHITE">
+                        <Button fx:id="addToCartBtn" mnemonicParsing="false" onAction="#handleClickAddToCart" style="-fx-background-color: blue;" text="Add to Cart" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -102,13 +102,13 @@
                <children>
                   <TableView layoutX="25.0" layoutY="25.0" prefHeight="200.0" prefWidth="754.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="No" />
-                      <TableColumn prefWidth="75.0" text="Item ID" />
-                        <TableColumn prefWidth="146.0" text="Item Name" />
-                        <TableColumn prefWidth="130.0" text="Order Qty" />
-                        <TableColumn prefWidth="125.0" text="Unit Price" />
-                        <TableColumn prefWidth="111.0" text="Total" />
-                        <TableColumn prefWidth="91.0" text="Remove" />
+                      <TableColumn fx:id="noCol" prefWidth="75.0" text="No" />
+                      <TableColumn fx:id="itemIdCol" prefWidth="75.0" text="Item ID" />
+                        <TableColumn fx:id="itemNameCol" prefWidth="146.0" text="Item Name" />
+                        <TableColumn fx:id="orderQtyCol" prefWidth="130.0" text="Order Qty" />
+                        <TableColumn fx:id="unitPriceCol" prefWidth="125.0" text="Unit Price" />
+                        <TableColumn fx:id="totalCol" prefWidth="111.0" text="Total" />
+                        <TableColumn fx:id="removeCol" prefWidth="91.0" text="Remove" />
                     </columns>
                   </TableView>
                </children></AnchorPane>
