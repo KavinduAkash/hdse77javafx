@@ -163,7 +163,49 @@ public class OrderController implements Initializable {
 
     @FXML
     void selectItemIdComboBox(ActionEvent event) {
+        // Step 01
+        String id = itemIdComboBox.getSelectionModel().getSelectedItem();
+        
+        // Step 02
+        try {
 
+             Connection conn = DBConnection.getInstance().getConnection();
+
+             String query = "SELECT * FROM item WHERE id=?";
+
+             PreparedStatement pstmt = conn.prepareStatement(query);
+
+             pstmt.setString(1, id);
+
+             ResultSet result = pstmt.executeQuery();
+
+             if(result.next()) {
+
+                 String name = result.getString("name");                 
+                 int qty = result.getInt("qty");
+                 double unitPrice = result.getDouble("unitPrice");
+
+                 // Step 03
+                 ItemNameValueLbl.setText(name);
+                 
+                 // itemQtyValueLbl.setText(qty + "");
+                 // itemQtyValueLbl.setText(Integer.toString(qty));
+                 itemQtyValueLbl.setText(String.valueOf(qty));
+                 
+                 // itemUnitPriceValueLbl.setText(unitPrice + "");
+                 // itemUnitPriceValueLbl.setText(Double.toString(unitPrice));
+                 itemUnitPriceValueLbl.setText(String.valueOf(unitPrice));
+
+             } else {
+                 System.out.println("Customer not found!");
+             }
+
+             pstmt.close();
+
+        } catch(SQLException e) {
+             e.printStackTrace();
+             System.out.println("Something went wrong!");
+        }
     }
     
 }
