@@ -32,49 +32,49 @@
                   <VBox layoutX="21.0" layoutY="14.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Customer ID" />
-                        <ComboBox fx:id="customerIdComboBox" prefWidth="150.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-width: 0 0 2 0;" />
+                        <ComboBox fx:id="customerIdComboBox" onAction="#selectCustomerIdComboBox" prefWidth="150.0" style="-fx-background-color: none; -fx-border-color: black; -fx-border-width: 0 0 2 0;" />
                      </children>
                   </VBox>
                   <VBox layoutX="202.0" layoutY="14.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Customer Name" />
-                        <Label text="-" />
+                        <Label fx:id="customerNameValueLbl" text="-" />
                      </children>
                   </VBox>
                   <VBox layoutX="391.0" layoutY="14.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Customer Phone" />
-                        <Label text="-" />
+                        <Label fx:id="customerPhoneValueLbl" text="-" />
                      </children>
                   </VBox>
                   <VBox layoutX="606.0" layoutY="14.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Customer Email" />
-                        <Label text="-" />
+                        <Label fx:id="customerEmailValueLbl" text="-" />
                      </children>
                   </VBox>
                   <VBox layoutX="21.0" layoutY="82.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Item ID" />
-                        <ComboBox fx:id="itemIdComboBox" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0; -fx-background-color: none;" />
+                        <ComboBox fx:id="itemIdComboBox" onAction="#selectItemIdComboBox" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0; -fx-background-color: none;" />
                      </children>
                   </VBox>
                   <VBox layoutX="202.0" layoutY="82.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Item Name" />
-                        <Label text="-" />
+                        <Label fx:id="ItemNameValueLbl" text="-" />
                      </children>
                   </VBox>
                   <VBox layoutX="316.0" layoutY="82.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Item Available Qty" />
-                        <Label text="-" />
+                        <Label fx:id="itemQtyValueLbl" text="-" />
                      </children>
                   </VBox>
                   <VBox layoutX="467.0" layoutY="82.0" prefHeight="46.0" prefWidth="150.0">
                      <children>
                         <Label text="Unit Price" />
-                        <Label text="-" />
+                        <Label fx:id="itemUnitPriceValueLbl" text="-" />
                      </children>
                   </VBox>
                   <VBox layoutX="607.0" layoutY="82.0" prefHeight="46.0" prefWidth="150.0">
