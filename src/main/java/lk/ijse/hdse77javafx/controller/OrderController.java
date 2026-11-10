@@ -114,6 +114,9 @@ public class OrderController implements Initializable {
         
             private Button btn = new Button("Delete");
             
+            {
+                btn.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+            }
             
             {
             
