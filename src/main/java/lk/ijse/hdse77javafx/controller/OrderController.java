@@ -19,7 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hdse77javafx.db.DBConnection;
 import lk.ijse.hdse77javafx.model.Customer;
 import lk.ijse.hdse77javafx.model.tbl.CartTbl;
@@ -81,6 +83,10 @@ public class OrderController implements Initializable {
     @FXML
     private TableColumn<?, ?> unitPriceCol;
     
+    
+    @FXML
+    private TableView<CartTbl> cartTbl;
+    
 
     private final String QTY_REGEX = "^[0-9]+$";
     
@@ -89,8 +95,17 @@ public class OrderController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        noCol.setCellValueFactory(new PropertyValueFactory<>("no"));
+        itemIdCol.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        itemNameCol.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        orderQtyCol.setCellValueFactory(new PropertyValueFactory<>("orderQty"));
+        unitPriceCol.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        totalCol.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        
         loadCustomerIdComboBox();
         loadItemIdComboBox();
+        
     }
     
     private void loadCustomerIdComboBox() {
@@ -275,6 +290,7 @@ public class OrderController implements Initializable {
                 );
                 
                 cartTblList.add(cartTbl);
+                loadCartTbl();
                 
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Qty").show();      
@@ -283,6 +299,14 @@ public class OrderController implements Initializable {
         } else {
             new Alert(Alert.AlertType.ERROR, "Invalid Order Qty").show();      
         }
+        
+    }
+    
+    
+    private void loadCartTbl() {
+        
+        ObservableList<CartTbl> obList = FXCollections.observableArrayList(cartTblList);
+        cartTbl.setItems(obList);
         
     }
     

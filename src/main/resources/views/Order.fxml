@@ -100,7 +100,7 @@
                </children></AnchorPane>
             <AnchorPane prefHeight="253.0" prefWidth="800.0">
                <children>
-                  <TableView layoutX="25.0" layoutY="25.0" prefHeight="200.0" prefWidth="754.0">
+                  <TableView fx:id="cartTbl" layoutX="25.0" layoutY="25.0" prefHeight="200.0" prefWidth="754.0">
                     <columns>
                       <TableColumn fx:id="noCol" prefWidth="75.0" text="No" />
                       <TableColumn fx:id="itemIdCol" prefWidth="75.0" text="Item ID" />
