@@ -114,6 +114,23 @@ public class OrderController implements Initializable {
         
             private Button btn = new Button("Delete");
             
+            
+            {
+            
+                btn.setOnAction(event -> {
+                
+                    CartTbl cartTbl = getTableView().getItems().get(getIndex());
+                    cartTblList.remove(cartTbl);
+                    loadCartTbl();
+                    
+                    totalBill = totalBill - cartTbl.getTotalPrice();
+                    totalBilllbl.setText(String.valueOf(totalBill));
+                    
+                });
+                
+            }
+            
+            
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
