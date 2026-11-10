@@ -27,7 +27,7 @@ public class OrderController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        loadCustomerIdComboBox();
     }
     
     private void loadCustomerIdComboBox() {
