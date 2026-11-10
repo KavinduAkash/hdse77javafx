@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import lk.ijse.hdse77javafx.db.DBConnection;
 import lk.ijse.hdse77javafx.model.Customer;
+import lk.ijse.hdse77javafx.model.tbl.CartTbl;
 
 public class OrderController implements Initializable {
 
@@ -80,6 +82,10 @@ public class OrderController implements Initializable {
     private TableColumn<?, ?> unitPriceCol;
     
 
+    private final String QTY_REGEX = "^[0-9]+$";
+    
+    private List<CartTbl> cartTblList = new ArrayList<>();
+    
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -244,6 +250,39 @@ public class OrderController implements Initializable {
     
     @FXML
     void handleClickAddToCart(ActionEvent event) {
+        
+        String id = itemIdComboBox.getSelectionModel().getSelectedItem();
+        String itemName = ItemNameValueLbl.getText();
+        
+        int availableQty = Integer.parseInt(itemQtyValueLbl.getText());
+        double unitPrice = Double.parseDouble(itemUnitPriceValueLbl.getText());
+        
+        String orderQty = orderQtyTextField.getText();
+        
+        if(orderQty.matches(QTY_REGEX)) {
+            
+            int ordQty = Integer.parseInt(orderQty);
+            
+            if(!(ordQty<1)) {
+                
+                CartTbl cartTbl = new CartTbl(
+                        cartTblList.size() + 1, 
+                        id, 
+                        itemName, 
+                        ordQty, 
+                        unitPrice, 
+                        ordQty * unitPrice
+                );
+                
+                cartTblList.add(cartTbl);
+                
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Invalid Order Qty").show();      
+            }
+            
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Invalid Order Qty").show();      
+        }
         
     }
     
