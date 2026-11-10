@@ -22,12 +22,13 @@ public class OrderController implements Initializable {
     private ComboBox<String> customerIdComboBox;
 
     @FXML
-    private ComboBox<?> itemIdComboBox;
+    private ComboBox<String> itemIdComboBox;
 
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadCustomerIdComboBox();
+        loadItemIdComboBox();
     }
     
     private void loadCustomerIdComboBox() {
@@ -53,6 +54,38 @@ public class OrderController implements Initializable {
             customerIdObList.addAll(customerIdList);
 
             customerIdComboBox.setItems(customerIdObList);
+            
+            stmt.close();
+
+       } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong!");
+       }
+    }
+    
+    private void loadItemIdComboBox() {
+       List<String> itemIdList = new ArrayList<String>();
+       
+       ObservableList<String> itemIdObList = FXCollections.observableArrayList();
+
+       try {
+
+            Connection conn = DBConnection.getInstance().getConnection();
+
+            String query = "SELECT * FROM item ORDER BY id DESC";
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet result = stmt.executeQuery(query);
+
+            while(result.next()) {
+                String id = result.getString("id");
+                itemIdList.add(id);
+            }
+            
+            itemIdObList.addAll(itemIdList);
+
+            itemIdComboBox.setItems(itemIdObList);
             
             stmt.close();
 
