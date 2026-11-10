@@ -117,7 +117,7 @@
                   <VBox layoutX="30.0" layoutY="18.0" prefHeight="38.0" prefWidth="100.0">
                      <children>
                         <Label text="Total: (Rs.)" />
-                        <Label text="0.0">
+                        <Label fx:id="totalBilllbl" text="0.0">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>

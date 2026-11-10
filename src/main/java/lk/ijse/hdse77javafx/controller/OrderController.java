@@ -87,10 +87,14 @@ public class OrderController implements Initializable {
     @FXML
     private TableView<CartTbl> cartTbl;
     
-
+    @FXML
+    private Label totalBilllbl;
+    
     private final String QTY_REGEX = "^[0-9]+$";
     
     private List<CartTbl> cartTblList = new ArrayList<>();
+    
+    private double totalBill = 0.0;
     
     
     @Override
@@ -290,7 +294,11 @@ public class OrderController implements Initializable {
                 );
                 
                 cartTblList.add(cartTbl);
+                
                 loadCartTbl();
+                
+                totalBill = totalBill + (ordQty * unitPrice);
+                totalBilllbl.setText(String.valueOf(totalBill));
                 
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Qty").show();      
