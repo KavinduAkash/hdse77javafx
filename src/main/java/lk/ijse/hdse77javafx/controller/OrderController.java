@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -63,25 +64,25 @@ public class OrderController implements Initializable {
     
     
     @FXML
-    private TableColumn<?, ?> noCol;
+    private TableColumn<CartTbl, Integer> noCol;
     
     @FXML
-    private TableColumn<?, ?> itemIdCol;
+    private TableColumn<CartTbl, String> itemIdCol;
 
     @FXML
-    private TableColumn<?, ?> itemNameCol;
+    private TableColumn<CartTbl, String> itemNameCol;
 
     @FXML
-    private TableColumn<?, ?> orderQtyCol;
+    private TableColumn<CartTbl, Integer> orderQtyCol;
     
     @FXML
-    private TableColumn<?, ?> removeCol;
+    private TableColumn<CartTbl, Void> removeCol;
 
     @FXML
-    private TableColumn<?, ?> totalCol;
+    private TableColumn<CartTbl, Double> totalCol;
 
     @FXML
-    private TableColumn<?, ?> unitPriceCol;
+    private TableColumn<CartTbl, Double> unitPriceCol;
     
     
     @FXML
@@ -106,6 +107,23 @@ public class OrderController implements Initializable {
         orderQtyCol.setCellValueFactory(new PropertyValueFactory<>("orderQty"));
         unitPriceCol.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
         totalCol.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        
+        // ==========================================
+        
+        removeCol.setCellFactory(col -> new TableCell<CartTbl,Void>() {
+        
+            private Button btn = new Button("Delete");
+            
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty?null:btn);
+            }
+        
+        });
+        
+        // ==========================================
+        
         
         loadCustomerIdComboBox();
         loadItemIdComboBox();
