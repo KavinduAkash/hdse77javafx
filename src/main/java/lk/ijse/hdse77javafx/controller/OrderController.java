@@ -342,6 +342,8 @@ public class OrderController implements Initializable {
                 totalBill = totalBill + (ordQty * unitPrice);
                 totalBilllbl.setText(String.valueOf(totalBill));
                 
+                cleanItemForm();
+                
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid Order Qty").show();      
             }
@@ -485,5 +487,15 @@ public class OrderController implements Initializable {
        }
        
    }
+    
+    
+   private void cleanItemForm() {
+       itemIdComboBox.setValue(null);
+       // itemIdComboBox.getSelectionModel().clearSelection();
+       ItemNameValueLbl.setText("-");
+       itemQtyValueLbl.setText("-");
+       itemUnitPriceValueLbl.setText("-");
+       orderQtyTextField.setText("");
+   } 
     
 }
