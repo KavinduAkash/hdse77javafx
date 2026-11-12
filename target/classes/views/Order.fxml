@@ -85,7 +85,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" layoutX="593.0" layoutY="150.0" prefHeight="46.0" prefWidth="164.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: yellow;" text="Reset" textFill="RED">
+                        <Button mnemonicParsing="false" onAction="#clickResetItemForm" style="-fx-background-color: yellow;" text="Reset" textFill="RED">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -126,7 +126,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" layoutX="425.0" layoutY="19.0" prefHeight="46.0" prefWidth="361.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: yellow;" text="Cancel" textFill="RED">
+                        <Button mnemonicParsing="false" onAction="#clickResetFullOrderForm" style="-fx-background-color: yellow;" text="Cancel" textFill="RED">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>

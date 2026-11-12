@@ -509,4 +509,14 @@ public class OrderController implements Initializable {
        totalBilllbl.setText("0.0");
    }
     
+   @FXML
+   void clickResetItemForm(ActionEvent event) {
+        cleanItemForm();
+   }
+   
+   @FXML
+   void clickResetFullOrderForm(ActionEvent event) {
+        cleanFullOrderForm();
+   }
+   
 }
