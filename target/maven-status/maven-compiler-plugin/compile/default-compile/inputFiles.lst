@@ -6,5 +6,7 @@
 /Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/db/DBConnection.java
 /Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/model/Customer.java
 /Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/model/Item.java
+/Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/model/Order.java
+/Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/model/OrderDetials.java
 /Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/model/tbl/CartTbl.java
 /Users/kavinduakash/Developer/IJSE/HDSE77/hdse77javafx/src/main/java/lk/ijse/hdse77javafx/model/tbl/CustomerTbl.java

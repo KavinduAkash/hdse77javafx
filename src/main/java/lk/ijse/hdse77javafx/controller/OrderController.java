@@ -390,11 +390,11 @@ public class OrderController implements Initializable {
     public void addOrderDetails(Connection conn, Order order) throws Exception {
             for (OrderDetials orderDetials : order.getOrderDetailsList()) {
                 // INSERT INTO orders_detail VALUES(1, 'O001', 'I001', 10, 100.00);
-                String query = "INSERT INTO order_detail (order_id, item_id, qty, unit_price)VALUESX(?, ?, ?, ?)";
+                String query = "INSERT INTO order_detail (order_id, item_id, qty, unit_price) VALUES (?, ?, ?, ?)";
                 
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 
-                pstmt.setString(1, order.getOrderId());
+                pstmt.setInt(1, order.getOrderId());
                 pstmt.setString(2, orderDetials.getItemId());
                 pstmt.setInt(3, orderDetials.getQty());
                 
@@ -436,14 +436,26 @@ public class OrderController implements Initializable {
            
            PreparedStatement pstmt = conn.prepareStatement(query);
            
-           pstmt.setString(2, order.getCustomerId());
-           pstmt.setDate(3, new java.sql.Date(order.getDate().getTime()));         
+           pstmt.setString(1, order.getCustomerId());
+           pstmt.setDate(2, new java.sql.Date(order.getDate().getTime()));         
            
            int result = pstmt.executeUpdate();
            
            if(result > 0) {
+               
+               ResultSet rs = pstmt.getGeneratedKeys();
+               
+               int orderId = 0;
+               
+               if(rs.next()) {
+                   orderId = rs.getInt(1);
+               }
             
-               addOrderDetails(conn, order);            
+               if(orderId!=0) {
+                    order.setOrderId(orderId);
+                    addOrderDetails(conn, order);
+                    new Alert(Alert.AlertType.INFORMATION, "Order placed successfully!").show();
+               }
             
            } else {
                System.out.println("Something went wrong!");
@@ -460,7 +472,7 @@ public class OrderController implements Initializable {
                System.out.println(ex.getMessage());
            }
            e.printStackTrace();
-           System.out.println("Something went wrong!");
+           new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
        
        } finally {
            try {

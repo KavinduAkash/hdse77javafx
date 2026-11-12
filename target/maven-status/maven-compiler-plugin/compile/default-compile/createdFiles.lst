@@ -6,6 +6,8 @@ lk/ijse/hdse77javafx/controller/OrderController$1.class
 lk/ijse/hdse77javafx/model/Customer.class
 lk/ijse/hdse77javafx/controller/OrderController.class
 lk/ijse/hdse77javafx/controller/LayoutController.class
+lk/ijse/hdse77javafx/model/Order.class
 lk/ijse/hdse77javafx/model/tbl/CustomerTbl.class
+lk/ijse/hdse77javafx/model/OrderDetials.class
 lk/ijse/hdse77javafx/db/DBConnection.class
 lk/ijse/hdse77javafx/model/tbl/CartTbl.class

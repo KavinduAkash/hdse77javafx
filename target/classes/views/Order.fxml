@@ -131,7 +131,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="199.0" style="-fx-background-color: green;" text="Place Order" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#clickPlaceOrderBtn" prefHeight="43.0" prefWidth="199.0" style="-fx-background-color: green;" text="Place Order" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
