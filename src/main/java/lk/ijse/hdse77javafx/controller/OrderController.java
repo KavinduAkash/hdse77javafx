@@ -434,7 +434,7 @@ public class OrderController implements Initializable {
            
            String query = "INSERT INTO orders (customer_id, order_date) VALUES(?, ?)";
            
-           PreparedStatement pstmt = conn.prepareStatement(query);
+           PreparedStatement pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
            
            pstmt.setString(1, order.getCustomerId());
            pstmt.setDate(2, new java.sql.Date(order.getDate().getTime()));         
