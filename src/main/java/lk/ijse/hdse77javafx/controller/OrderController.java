@@ -452,6 +452,7 @@ public class OrderController implements Initializable {
                         order.setOrderId(rs.getInt(1));
                         addOrderDetails(conn, order);
                         new Alert(Alert.AlertType.INFORMATION, "Order placed successfully!").show();
+                        cleanFullOrderForm();
                    } else {
                        throw new SQLException("Something went wrong!");
                    }
@@ -497,5 +498,15 @@ public class OrderController implements Initializable {
        itemUnitPriceValueLbl.setText("-");
        orderQtyTextField.setText("");
    } 
+   
+   private void cleanFullOrderForm() {
+       customerIdComboBox.setValue(null);
+       customerNameValueLbl.setText("-");
+       customerPhoneValueLbl.setText("-");
+       customerEmailValueLbl.setText("-");
+       cleanItemForm();
+       cartTbl.getItems().clear();
+       totalBilllbl.setText("0.0");
+   }
     
 }
