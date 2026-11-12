@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -363,6 +364,27 @@ public class OrderController implements Initializable {
     @FXML
     void clickPlaceOrderBtn(ActionEvent event) {
         
+        String cusId = customerIdComboBox.getSelectionModel().getSelectedItem();
+        Date orderDate = new Date();
+        List<OrderDetials> orderDetailsList = new ArrayList<>();
+        for (CartTbl cartTbl1 : cartTblList) {
+            
+            OrderDetials od = new OrderDetials();
+            od.setItemId(cartTbl1.getItemId());
+            od.setQty(cartTbl1.getOrderQty());
+            od.setTotalPrice(cartTbl1.getTotalPrice());
+            
+            orderDetailsList.add(od);
+            
+        }
+        
+        Order order = new Order();
+        order.setCustomerId(cusId);
+        order.setDate(orderDate);
+        order.setOrderDetailsList(orderDetailsList);
+        
+        placeOrder(order);
+        
     }
     
     public void addOrderDetails(Connection conn, Order order) throws Exception {
@@ -410,18 +432,12 @@ public class OrderController implements Initializable {
            
            conn.setAutoCommit(false);
            
-           // INSERT INTO orders VALUES('O001', 'C001', '2026-10-06');
-           String query = "INSERT INTO orders VALUES(?, ?, ?)";
+           String query = "INSERT INTO orders (customer_id, order_date) VALUES(?, ?)";
            
            PreparedStatement pstmt = conn.prepareStatement(query);
            
-           pstmt.setString(1, order.getOrderId());
-           /*
-           order.getDate() -> java.util.Date
-           java.sql.Date date = new java.sql.Date(order.getDate().getTime());
-           */
-           pstmt.setDate(2, new java.sql.Date(order.getDate().getTime()));         
-           pstmt.setString(3, order.getCustomerId());
+           pstmt.setString(2, order.getCustomerId());
+           pstmt.setDate(3, new java.sql.Date(order.getDate().getTime()));         
            
            int result = pstmt.executeUpdate();
            
