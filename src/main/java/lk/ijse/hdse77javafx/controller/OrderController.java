@@ -442,23 +442,24 @@ public class OrderController implements Initializable {
            int result = pstmt.executeUpdate();
            
            if(result > 0) {
-               
                ResultSet rs = pstmt.getGeneratedKeys();
                
-               int orderId = 0;
-               
                if(rs.next()) {
-                   orderId = rs.getInt(1);
-               }
-            
-               if(orderId!=0) {
-                    order.setOrderId(orderId);
-                    addOrderDetails(conn, order);
-                    new Alert(Alert.AlertType.INFORMATION, "Order placed successfully!").show();
+                   
+                   if(rs.getInt(1)!=0) {
+                        order.setOrderId(rs.getInt(1));
+                        addOrderDetails(conn, order);
+                        new Alert(Alert.AlertType.INFORMATION, "Order placed successfully!").show();
+                   } else {
+                       throw new SQLException("Something went wrong!");
+                   }
+                   
+               } else {
+                   throw new SQLException("Something went wrong!");
                }
             
            } else {
-               System.out.println("Something went wrong!");
+               throw new SQLException("Something went wrong!");
            }
            
            conn.commit();
