@@ -4,6 +4,7 @@
  */
 package lk.ijse.hdse77javafx.controller;
 
+import java.io.InputStream;
 import lk.ijse.hdse77javafx.model.Customer;
 import java.net.URL;
 import java.sql.Connection;
@@ -31,6 +32,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lk.ijse.hdse77javafx.db.DBConnection;
 import lk.ijse.hdse77javafx.model.tbl.CustomerTbl;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -414,5 +420,25 @@ public class CustomerController implements Initializable {
         customerAddressTextArea.setText("");
         customerPhoneTextField.setText("");
         customerEmailTextField.setText("");
+    }
+    
+    @FXML
+    void clickPrintBtn(ActionEvent event) {
+        
+        try {
+            Connection conn = DBConnection.getInstance().getConnection();
+            
+            InputStream inputStream = getClass().getResourceAsStream("/reports/customer.jrxml");
+            
+            JasperReport jr = JasperCompileManager.compileReport(inputStream);
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr , null, conn); // (JasperReport, Params, DBConnection)
+            
+            JasperViewer.viewReport(jp, false);
+        } catch(Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
+        
+        
     }
 }
