@@ -507,6 +507,8 @@ public class OrderController implements Initializable {
        cleanItemForm();
        cartTbl.getItems().clear();
        totalBilllbl.setText("0.0");
+       
+       cartTblList.clear();
    }
     
    @FXML
