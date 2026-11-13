@@ -439,6 +439,5 @@ public class CustomerController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
         }
         
-        
     }
 }

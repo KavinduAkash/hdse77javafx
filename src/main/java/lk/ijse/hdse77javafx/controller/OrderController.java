@@ -1,5 +1,6 @@
 package lk.ijse.hdse77javafx.controller;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +33,11 @@ import lk.ijse.hdse77javafx.model.Customer;
 import lk.ijse.hdse77javafx.model.Order;
 import lk.ijse.hdse77javafx.model.OrderDetials;
 import lk.ijse.hdse77javafx.model.tbl.CartTbl;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class OrderController implements Initializable {
 
@@ -423,7 +431,7 @@ public class OrderController implements Initializable {
     
     public void placeOrder(Order order) {
        Connection conn = null;
-       
+       int orderId = 0;
        try {
        
            final String DB_URL = "jdbc:mysql://localhost:3306/pos";
@@ -449,10 +457,14 @@ public class OrderController implements Initializable {
                if(rs.next()) {
                    
                    if(rs.getInt(1)!=0) {
+                       
+                        orderId = rs.getInt(1);
+                       
                         order.setOrderId(rs.getInt(1));
                         addOrderDetails(conn, order);
                         new Alert(Alert.AlertType.INFORMATION, "Order placed successfully!").show();
                         cleanFullOrderForm();
+                        
                    } else {
                        throw new SQLException("Something went wrong!");
                    }
@@ -466,6 +478,8 @@ public class OrderController implements Initializable {
            }
            
            conn.commit();
+           
+           printInvoice(orderId);
            
        } catch(Exception e) {
             
@@ -519,6 +533,30 @@ public class OrderController implements Initializable {
    @FXML
    void clickResetFullOrderForm(ActionEvent event) {
         cleanFullOrderForm();
+   }
+   
+   
+   private void printInvoice(int orderId) {
+       System.out.println("1 Hellooooooo: " + orderId);
+       
+       try {
+            Connection conn = DBConnection.getInstance().getConnection();
+            
+            InputStream inputStream = getClass().getResourceAsStream("/reports/invoice.jrxml");
+            
+            JasperReport jr = JasperCompileManager.compileReport(inputStream);
+            
+            System.out.println("2 Hellooooooo: " + orderId);
+            
+            Map<String, Object> params = new HashMap<>();
+            params.put("ORDER_ID", orderId);
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr , params, conn); // (JasperReport, Params, DBConnection)
+            System.out.println("3 Hellooooooo: " + orderId);
+            JasperViewer.viewReport(jp, false);
+        } catch(Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
    }
    
 }
